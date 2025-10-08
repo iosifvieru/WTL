@@ -44,7 +44,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>C:\Users\iovieru\Downloads\apache-tomcat-9.0.109-windows-x64\apache-tomcat-9.0.109\webapps</outputDirectory>
+                            <outputDirectory>/home/tero/Downloads/apache-tomcat-9.0.109/webapps</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}</directory>

@@ -53,5 +53,43 @@
     <input type="submit" value="Submit"/>
 </form>
 
+
+<br /><br /><br />
+<h3>Buy items.</h3>
+
+<%
+    String shoppingError = (String) session.getAttribute("shoppingCartError");
+    if(shoppingError != null) {
+%>
+    <p style="color: red;"><%= shoppingError %></p>
+<%
+    session.removeAttribute("shoppingCartError");
+    }
+%>
+<form method="POST" action="add-to-cart">
+    <input type="text" placeholder="Product Name" name="productName"></input><br />
+    <button>Buy</button>
+</form>
+
+<%@ page import="java.util.List" %>
+<%@ page import="org.L02.models.Product" %>
+<h3>Your items</h3>
+<ul>
+<%
+    List<Product> shoppingCart = (List<Product>) session.getAttribute("shopping-cart");
+    if (shoppingCart != null && !shoppingCart.isEmpty()) {
+        for (Product p : shoppingCart) {
+%>
+    <li>ProductName: <%= p.getProductName() %> Quantity: <%= p.getQuantity() %></li>
+<%
+        }
+    } else {
+%>
+    <li>No items in your cart.</li>
+<%
+    }
+%>
+</ul>
+
 </body>
 </html>
