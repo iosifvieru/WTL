@@ -26,6 +26,10 @@
 
 <a href="table-cookies">Tabel cu cookies si sesiuni</a>
 
+<br />
+
+<a href ="colored-page">Catre pagina cu text colorat si fundal. </a>
+
 <br/><br/>
 <%
     String error = (String) session.getAttribute("errorMessage");
