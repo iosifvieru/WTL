@@ -1,8 +1,10 @@
 org/L03/beans/Course.class
-org/L03/beans/Instructor.class
 org/L03/utils/RandomUtils.class
+org/L03/beans/Instructor.class
 org/L03/beans/NumberBean.class
 org/L03/servlets/BeanPropsServlet.class
+org/L03/beans/TriangleBean.class
 org/L03/beans/Subject.class
 org/L03/servlets/ScopedVarsServlet.class
 org/L03/utils/PrimeUtils.class
+org/L03/beans/TriangleServlet.class
