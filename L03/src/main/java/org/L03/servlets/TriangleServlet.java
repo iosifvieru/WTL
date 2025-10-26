@@ -1,4 +1,6 @@
-package org.L03.beans;
+package org.L03.servlets;
+
+import org.L03.beans.TriangleBean;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +27,7 @@ public class TriangleServlet extends HttpServlet {
                 // forward to index.jsp with error.
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
+                return;
             }
 
             // if triangle, calculate area and perimeter.

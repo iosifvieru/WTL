@@ -9,6 +9,7 @@
 
 <p style="color: red">${formError}</p>
 <p style="color: blue">${formMessage}</p>
+
 <form method="GET" action="triangle">
     <input type="number" name="a" placeholder="Latura 1"/> <br />
     <input type="number" name="b" placeholder="Latura 2"/> <br />
@@ -16,6 +17,8 @@
 
     <button>Send</button>
 </form>
+
+<a href="triangleAjax.jsp"> </a> <br />
 
 </body>
 </html>
