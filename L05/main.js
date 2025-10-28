@@ -1,42 +1,58 @@
-const fs = require('fs');
+const { readFileAsArray, asyncFileRead, readFileWithEmitter } = require('./readAsyncFiles');
+const { checkForTrianglePromise } = require('./checkTriangle');
 
-// ex 2
-function readFileAsArray(filename) {
-    return new Promise(function(resolve, reject) {
-        fs.readFile(filename, function(err, data){
-            if(err){
-                return reject(err);
-            }
+// read file data
+var data1 = readFileAsArray('numbers.txt');
 
-            const lines = data.toString().trim().split('\n');
-            resolve(lines);
-        });
-    });
-}
+data1.then(value => {
+    console.log("reading from readFileAsArray: ");
+    console.log(value);
+}).catch(err => {
+    console.log(err);
 
-var readFilePromise = readFileAsArray('numbers.txt');
+    throw err;
+})
 
-readFilePromise.then(function(result){
-    console.log(result);
-}).catch(function(err){
+var data2 = asyncFileRead('numbers.txt');
+
+data2.then(value => {
+    console.log("reading from asyncFileRead: ");
+    console.log(value);
+}).catch(err => {
+    console.log(err);
+
+    throw err;
+})
+
+var data3 = readFileWithEmitter('numbers.txt');
+
+const arr = []
+
+data3.on('line', (line) => {
+    arr.push(line);
+});
+
+data3.on('error', err => {
     console.log(err);
 });
 
-// readFilePromise.then(result => {
-//     console.log(result);
-// }).catch(err => {
-//     console.log(err);
-// });
+data3.on('end', count => {
+    console.log("readFileWithEmitter ended with arr length: ", count);
+    console.log(arr);
+});
 
-// ex 3
-async function readFileAsArrayAsync(filename){
-    const lines = await readFileAsArray(filename);
-    return lines;
-};
+// triangle check
 
-var result2 = readFileAsArrayAsync('numbers.txt');
-console.log("result2: " + result2);
+const triangle1 = checkForTrianglePromise(1, 2, 3);
+triangle1.then(value => {
+    console.log(value);
+}).catch(err => {
+    console.log(err);
+});
 
-result2.then((result) => {
-    console.log(result);
+const triangle2 = checkForTrianglePromise(3, 2, 3);
+triangle2.then(value => {
+    console.log(value);
+}).catch(err => {
+    console.log(err);
 });
