@@ -1,4 +1,5 @@
 // check if three values can be a triangle using Callback, Promise, Async, EventEmitter.
+const EventEmitter = require('events');
 
 function calculateTriangleArea(a, b, c){
     const p = (a + b + c) / 2;
@@ -35,8 +36,32 @@ function checkForTrianglePromise(a, b, c) {
     });
 };
 
+async function checkForTriangleAsync(a, b, c){
+    var result = await checkForTrianglePromise(a, b, c);
+    return result;
+};
 
+function checkForTriangleEventEmitter(a, b, c){
+    const emitter = new EventEmitter();
+    
+    if(a < 0 || b < 0 || c < 0){
+        emitter.emit('err', "A, B, C are not positive numbers.");
+     }
+
+    if(a + b <= c || a + c <= b || b + c <= a){
+        emitter.emit('err', `(${a}, ${b}, ${c}) is not a triangle.`);
+    }
+
+    const area = calculateTriangleArea(a, b, c);
+    const perimeter = a + b + c;
+    const type = calculateTriangleType(a, b, c);
+
+    emitter.emit('result', "Area: " + area + " Perimeter: " + perimeter + " Triangle Type: " + type);
+    return emitter;
+}
 
 module.exports = {
-    checkForTrianglePromise
+    checkForTrianglePromise,
+    checkForTriangleAsync,
+    checkForTriangleEventEmitter
 }

@@ -1,5 +1,5 @@
 const { readFileAsArray, asyncFileRead, readFileWithEmitter } = require('./readAsyncFiles');
-const { checkForTrianglePromise } = require('./checkTriangle');
+const { checkForTrianglePromise, checkForTriangleAsync, checkForTriangleEventEmitter } = require('./checkTriangle');
 
 // read file data
 var data1 = readFileAsArray('numbers.txt');
@@ -55,4 +55,21 @@ triangle2.then(value => {
     console.log(value);
 }).catch(err => {
     console.log(err);
+});
+
+const triangle3 = checkForTriangleAsync(3, 2, 3);
+triangle3.then(value => {
+    console.log(value);
+}).catch(err => {
+    console.log(err);
+});
+
+const triangle4 = checkForTriangleEventEmitter(5, 3, 3);
+
+triangle4.on('err', err => {
+    console.log(err);
+});
+
+triangle4.on('result', res => {
+    console.log(res);
 });
