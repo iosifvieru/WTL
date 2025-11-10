@@ -1,0 +1,17 @@
+[
+    {
+        "custId": "id001",
+        "name":  "John Doe",
+        "sold": 50.78
+    },
+    {
+        "custId": "id002",
+        "name":  "Bill Gates",
+        "sold": 1234.56
+    },
+    {
+        "custId": "id003",
+        "name":  "Mary Jean",
+        "sold": 987654.32
+    }
+]
